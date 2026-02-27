@@ -14,13 +14,18 @@ describe("AppWithSignal", () => {
     const firstNumberInput = screen.getByRole("button", {
       name: "Increment First Number",
     })
+    expect(screen.getByText("First Number: 0")).toBeVisible()
     const secondNumberInput = screen.getByRole("button", {
       name: "Increment Second Number",
     })
+    expect(screen.getByText("Second Number: 0")).toBeVisible()
     expect(screen.getByText("Sum: 0")).toBeVisible()
 
     await user.click(firstNumberInput)
+    expect(screen.getByText("First Number: 1")).toBeVisible()
+    expect(screen.getByText("Sum: 1")).toBeVisible()
     await user.click(secondNumberInput)
+    expect(screen.getByText("Second Number: 1")).toBeVisible()
     expect(screen.getByText("Sum: 2")).toBeVisible()
 
     expect(consoleLogSpy.mock.calls[0][0]).toBe("rendering app with signal")
@@ -43,13 +48,18 @@ describe("AppWithoutSignal", () => {
     const firstNumberInput = screen.getByRole("button", {
       name: "Increment First Number",
     })
+    expect(screen.getByText("First Number: 0")).toBeVisible()
     const secondNumberInput = screen.getByRole("button", {
       name: "Increment Second Number",
     })
+    expect(screen.getByText("Second Number: 0")).toBeVisible()
     expect(screen.getByText("Sum: 0")).toBeVisible()
 
     await user.click(firstNumberInput)
+    expect(screen.getByText("First Number: 1")).toBeVisible()
+    expect(screen.getByText("Sum: 1")).toBeVisible()
     await user.click(secondNumberInput)
+    expect(screen.getByText("Second Number: 1")).toBeVisible()
     expect(screen.getByText("Sum: 2")).toBeVisible()
 
     expect(consoleLogSpy.mock.calls[0][0]).toBe("rendering app without signal")
