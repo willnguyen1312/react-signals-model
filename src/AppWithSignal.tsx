@@ -13,7 +13,7 @@ const countModel = createModel(() => {
 });
 
 export default function App() {
-  console.log("rendering app");
+  // console.log("rendering app with signal");
   const { count, increment } = useModel(countModel);
   return (
     <div>
