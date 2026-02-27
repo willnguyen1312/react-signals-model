@@ -1,37 +1,10 @@
-import { useModel } from "@preact/signals-react"
-import { signal, computed, createModel, effect } from "@preact/signals-core"
-
-const AppModel = createModel(() => {
-  console.log("creating app model")
-  const firstNumber = signal(0)
-  const secondNumber = signal(0)
-  const sum = computed(() => firstNumber.value + secondNumber.value)
-
-  const setFirstNumber = (value: number) => {
-    firstNumber.value = value
-  }
-
-  const setSecondNumber = (value: number) => {
-    secondNumber.value = value
-  }
-
-  effect(() => {
-    console.log(`sum changed ${sum.value}`)
-  })
-
-  return {
-    firstNumber,
-    setFirstNumber,
-    secondNumber,
-    setSecondNumber,
-    sum,
-  }
-})
+import { useModel } from "@preact/signals-react";
+import { AppModel } from "./model";
 
 export default function App() {
-  console.log("rendering app with signal")
+  console.log("rendering app with signal");
   const { firstNumber, secondNumber, sum, setFirstNumber, setSecondNumber } =
-    useModel(AppModel)
+    useModel(AppModel);
 
   return (
     <>
@@ -47,5 +20,5 @@ export default function App() {
 
       <p>Sum: {sum}</p>
     </>
-  )
+  );
 }
