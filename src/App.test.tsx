@@ -24,10 +24,11 @@ describe("AppWithSignal", () => {
     expect(screen.getByText("Sum: 2")).toBeVisible();
 
     expect(consoleLogSpy.mock.calls[0][0]).toBe("rendering app with signal");
-    expect(consoleLogSpy.mock.calls[1][0]).toBe("sum changed 0");
-    expect(consoleLogSpy.mock.calls[2][0]).toBe("sum changed 1");
-    expect(consoleLogSpy.mock.calls[3][0]).toBe("sum changed 2");
-    expect(consoleLogSpy.mock.calls.length).toBe(4);
+    expect(consoleLogSpy.mock.calls[1][0]).toBe("creating app model");
+    expect(consoleLogSpy.mock.calls[2][0]).toBe("sum changed 0");
+    expect(consoleLogSpy.mock.calls[3][0]).toBe("sum changed 1");
+    expect(consoleLogSpy.mock.calls[4][0]).toBe("sum changed 2");
+    expect(consoleLogSpy.mock.calls.length).toBe(5);
     consoleLogSpy.mockRestore();
   });
 });

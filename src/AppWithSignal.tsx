@@ -2,6 +2,7 @@ import { useModel } from "@preact/signals-react";
 import { signal, computed, createModel, effect } from "@preact/signals-core";
 
 const AppModel = createModel(() => {
+  console.log("creating app model");
   const firstNumber = signal(0);
   const secondNumber = signal(0);
   const sum = computed(() => firstNumber.value + secondNumber.value);
