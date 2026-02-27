@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
 export default function AppWithoutSignal() {
-  console.log("rendering app without signal");
-  const [firstNumber, setFirstNumber] = useState(0);
-  const [secondNumber, setSecondNumber] = useState(0);
+  console.log("rendering app without signal")
+  const [firstNumber, setFirstNumber] = useState(0)
+  const [secondNumber, setSecondNumber] = useState(0)
 
-  const sum = firstNumber + secondNumber;
+  const sum = firstNumber + secondNumber
 
   useEffect(() => {
-    console.log(`sum changed ${sum}`);
-  }, [sum]);
+    console.log(`sum changed ${sum}`)
+  }, [sum])
 
   return (
     <div>
@@ -24,5 +24,5 @@ export default function AppWithoutSignal() {
 
       <p>Sum: {sum}</p>
     </div>
-  );
+  )
 }
