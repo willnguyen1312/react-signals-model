@@ -1,24 +1,49 @@
-import { signal, useModel } from "@preact/signals-react";
-import { createModel } from "@preact/signals-core";
+import { useModel } from "@preact/signals-react";
+import { signal, computed, createModel, effect } from "@preact/signals-core";
 
-const countModel = createModel(() => {
-  const count = signal(0);
-  const increment = () => {
-    count.value++;
+const AppModel = createModel(() => {
+  const firstNumber = signal(0);
+  const secondNumber = signal(0);
+  const sum = computed(() => firstNumber.value + secondNumber.value);
+
+  const setFirstNumber = (value: number) => {
+    firstNumber.value = value;
   };
+
+  const setSecondNumber = (value: number) => {
+    secondNumber.value = value;
+  };
+
+  effect(() => {
+    console.log(`sum changed ${sum.value}`);
+  });
+
   return {
-    count,
-    increment,
+    firstNumber,
+    setFirstNumber,
+    secondNumber,
+    setSecondNumber,
+    sum,
   };
 });
 
 export default function App() {
-  // console.log("rendering app with signal");
-  const { count, increment } = useModel(countModel);
+  console.log("rendering app with signal");
+  const { firstNumber, secondNumber, sum, setFirstNumber, setSecondNumber } =
+    useModel(AppModel);
+
   return (
     <div>
-      <button onClick={increment}>Increment</button>
-      <p>Value: {count}</p>
+      <p>First Number: {firstNumber}</p>
+      <button onClick={() => setFirstNumber(firstNumber.value + 1)}>
+        Increment First Number
+      </button>
+      <p>Second Number: {secondNumber}</p>
+      <button onClick={() => setSecondNumber(secondNumber.value + 1)}>
+        Increment Second Number
+      </button>
+
+      <p>Sum: {sum}</p>
     </div>
   );
 }
