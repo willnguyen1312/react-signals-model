@@ -67,18 +67,23 @@ describe("AppModel", () => {
   it("works without UI", () => {
     const consoleLogSpy = vi.spyOn(console, "log");
     consoleLogSpy.mockImplementation(() => {});
-    const { firstNumber, secondNumber, sum, setFirstNumber, setSecondNumber } =
-      new AppModel();
+    const {
+      firstNumber,
+      secondNumber,
+      sum,
+      incrementFirstNumber,
+      incrementSecondNumber,
+    } = new AppModel();
 
     expect(firstNumber.value).toBe(0);
     expect(secondNumber.value).toBe(0);
     expect(sum.value).toBe(0);
 
-    setFirstNumber(1);
+    incrementFirstNumber();
     expect(firstNumber.value).toBe(1);
     expect(sum.value).toBe(1);
 
-    setSecondNumber(1);
+    incrementSecondNumber();
     expect(secondNumber.value).toBe(1);
     expect(sum.value).toBe(2);
 

@@ -8,12 +8,12 @@ export const AppModel = createModel(() => {
     name: "sum",
   });
 
-  const setFirstNumber = (value: number) => {
-    firstNumber.value = value;
+  const incrementFirstNumber = () => {
+    firstNumber.value++;
   };
 
-  const setSecondNumber = (value: number) => {
-    secondNumber.value = value;
+  const incrementSecondNumber = () => {
+    secondNumber.value++;
   };
 
   effect(() => {
@@ -22,9 +22,9 @@ export const AppModel = createModel(() => {
 
   return {
     firstNumber,
-    setFirstNumber,
+    incrementFirstNumber,
     secondNumber,
-    setSecondNumber,
+    incrementSecondNumber,
     sum,
   };
 });

@@ -3,20 +3,21 @@ import { AppModel } from "./model";
 
 export default function App() {
   console.log("rendering app with signal");
-  const { firstNumber, secondNumber, sum, setFirstNumber, setSecondNumber } =
-    useModel(AppModel);
+  const {
+    firstNumber,
+    secondNumber,
+    sum,
+    incrementFirstNumber,
+    incrementSecondNumber,
+  } = useModel(AppModel);
 
   return (
     <>
       <p>First Number: {firstNumber}</p>
-      <button onClick={() => setFirstNumber(firstNumber.value + 1)}>
-        Increment First Number
-      </button>
+      <button onClick={incrementFirstNumber}>Increment First Number</button>
 
       <p>Second Number: {secondNumber}</p>
-      <button onClick={() => setSecondNumber(secondNumber.value + 1)}>
-        Increment Second Number
-      </button>
+      <button onClick={incrementSecondNumber}>Increment Second Number</button>
 
       <p>Sum: {sum}</p>
     </>
