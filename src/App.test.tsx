@@ -2,6 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent, { type UserEvent } from "@testing-library/user-event";
 import AppWithSignal from "./AppWithSignal.tsx";
+import AppWithSignalUnoptimized from "./AppWithSignalUnoptimized.tsx";
 import { AppModel } from "./model";
 import AppWithoutSignal from "./AppWithoutSignal.tsx";
 
@@ -59,6 +60,27 @@ describe("AppWithSignal", () => {
     expect(consoleLogSpy.mock.calls[3][0]).toBe("sum changed 1");
     expect(consoleLogSpy.mock.calls[4][0]).toBe("sum changed 2");
     expect(consoleLogSpy.mock.calls.length).toBe(5);
+    consoleLogSpy.mockRestore();
+  });
+});
+
+describe("AppWithSignalUnoptimized", () => {
+  it("increments count when button is clicked", async () => {
+    const consoleLogSpy = vi.spyOn(console, "log");
+    consoleLogSpy.mockImplementation(() => {});
+    const user = userEvent.setup();
+    render(<AppWithSignalUnoptimized />);
+
+    await assertWorkingApp({ user });
+
+    expect(consoleLogSpy.mock.calls[0][0]).toBe("rendering app with signal");
+    expect(consoleLogSpy.mock.calls[1][0]).toBe("creating app model");
+    expect(consoleLogSpy.mock.calls[2][0]).toBe("sum changed 0");
+    expect(consoleLogSpy.mock.calls[3][0]).toBe("sum changed 1");
+    expect(consoleLogSpy.mock.calls[4][0]).toBe("rendering app with signal");
+    expect(consoleLogSpy.mock.calls[5][0]).toBe("sum changed 2");
+    expect(consoleLogSpy.mock.calls[6][0]).toBe("rendering app with signal");
+    expect(consoleLogSpy.mock.calls.length).toBe(7);
     consoleLogSpy.mockRestore();
   });
 });

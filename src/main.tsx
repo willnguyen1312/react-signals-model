@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
-import App from "./AppWithSignal.tsx";
+// import App from "./AppWithSignal.tsx";
+import App from "./AppWithSignalUnoptimized.tsx";
 // import App from "./AppWithoutSignal.tsx";
 
 import { setDebugOptions } from "@preact/signals-debug";
