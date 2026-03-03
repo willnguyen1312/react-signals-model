@@ -5,9 +5,29 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>react-signals-model</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      main {
+        display: flex;
+        height: 100%;
+        width: 100%;
+      }
+      #root,
+      #signals-devtools {
+        flex: 1;
+        min-width: 0;
+      }
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <main>
+      <div id="root"></div>
+      <div id="signals-devtools"></div>
+    </main>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

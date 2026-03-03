@@ -2,4 +2,26 @@ import { createRoot } from "react-dom/client";
 import App from "./AppWithSignal.tsx";
 // import App from "./AppWithoutSignal.tsx";
 
-createRoot(document.getElementById("root")!).render(<App />);
+import { setDebugOptions } from "@preact/signals-debug";
+
+// Configure debug options
+setDebugOptions({
+  grouped: true, // Group related updates in console output
+  enabled: true, // Enable/disable debugging
+  spacing: 2, // Number of spaces for nested update indentation
+});
+
+Promise.all([
+  import("@preact/signals-devtools-ui"),
+  import("@preact/signals-devtools-adapter"),
+  // @ts-ignore
+  import("@preact/signals-devtools-ui/styles"),
+]).then(([{ mount }, { createDirectAdapter }]) => {
+  const container = document.getElementById("signals-devtools");
+  if (container) {
+    const adapter = createDirectAdapter();
+    mount({ adapter, container }).then(() => {
+      createRoot(document.getElementById("root")!).render(<App />);
+    });
+  }
+});
