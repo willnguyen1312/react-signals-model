@@ -19,7 +19,7 @@ export default function App() {
       <p>Second Number: {secondNumber.value}</p>
       <button onClick={incrementSecondNumber}>Increment Second Number</button>
 
-      <p>Sum: {sum}</p>
+      <p>Sum: {sum.value}</p>
     </>
   );
 }

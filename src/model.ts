@@ -9,11 +9,11 @@ export const AppModel = createModel(() => {
   });
 
   const incrementFirstNumber = () => {
-    firstNumber.value++;
+    firstNumber.value = firstNumber.value + 1;
   };
 
   const incrementSecondNumber = () => {
-    secondNumber.value++;
+    secondNumber.value = secondNumber.value + 1;
   };
 
   effect(() => {
