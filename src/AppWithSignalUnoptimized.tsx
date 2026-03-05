@@ -1,5 +1,13 @@
-import { useModel } from "@preact/signals-react";
+import { useModel, type ReadonlySignal } from "@preact/signals-react";
 import { AppModel } from "./model";
+
+// const {
+//   firstNumber,
+//   secondNumber,
+//   sum,
+//   incrementFirstNumber,
+//   incrementSecondNumber,
+// } = new AppModel();
 
 export default function App() {
   console.log("rendering app with signal");
@@ -13,13 +21,32 @@ export default function App() {
 
   return (
     <>
-      <p>First Number: {firstNumber.value}</p>
+      <FirstNumber firstNumber={firstNumber} />
       <button onClick={incrementFirstNumber}>Increment First Number</button>
 
-      <p>Second Number: {secondNumber.value}</p>
+      <SecondNumber secondNumber={secondNumber} />
       <button onClick={incrementSecondNumber}>Increment Second Number</button>
 
-      <p>Sum: {sum.value}</p>
+      <Sum sum={sum} />
     </>
   );
+}
+
+function FirstNumber({ firstNumber }: { firstNumber: ReadonlySignal<number> }) {
+  console.log("rendering first number");
+  return <p>First Number: {firstNumber.value}</p>;
+}
+
+function SecondNumber({
+  secondNumber,
+}: {
+  secondNumber: ReadonlySignal<number>;
+}) {
+  console.log("rendering second number");
+  return <p>Second Number: {secondNumber.value}</p>;
+}
+
+function Sum({ sum }: { sum: ReadonlySignal<number> }) {
+  console.log("rendering sum");
+  return <p>Sum: {sum.value}</p>;
 }

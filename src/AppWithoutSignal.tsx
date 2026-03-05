@@ -8,22 +8,37 @@ export default function AppWithoutSignal() {
   const sum = firstNumber + secondNumber;
 
   useEffect(() => {
-    console.log(`sum changed ${sum}`);
+    console.log(`current sum: ${sum}`);
   }, [sum]);
 
   return (
     <>
-      <p>First Number: {firstNumber}</p>
+      <FirstNumber firstNumber={firstNumber} />
       <button onClick={() => setFirstNumber(firstNumber + 1)}>
         Increment First Number
       </button>
 
-      <p>Second Number: {secondNumber}</p>
+      <SecondNumber secondNumber={secondNumber} />
       <button onClick={() => setSecondNumber(secondNumber + 1)}>
         Increment Second Number
       </button>
 
-      <p>Sum: {sum}</p>
+      <Sum sum={sum} />
     </>
   );
+}
+
+function FirstNumber({ firstNumber }: { firstNumber: number }) {
+  console.log("rendering first number");
+  return <p>First Number: {firstNumber}</p>;
+}
+
+function SecondNumber({ secondNumber }: { secondNumber: number }) {
+  console.log("rendering second number");
+  return <p>Second Number: {secondNumber}</p>;
+}
+
+function Sum({ sum }: { sum: number }) {
+  console.log("rendering sum");
+  return <p>Sum: {sum}</p>;
 }

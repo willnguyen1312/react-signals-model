@@ -17,7 +17,7 @@ export const AppModel = createModel(() => {
   };
 
   effect(() => {
-    console.log(`sum changed ${sum.value}`);
+    console.log(`current sum: ${sum.value}`);
   });
 
   return {

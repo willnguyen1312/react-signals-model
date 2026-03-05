@@ -35,31 +35,23 @@ describe("AppWithoutSignal", () => {
     await assertWorkingApp({ user });
 
     expect(consoleLogSpy.mock.calls[0][0]).toBe("rendering app without signal");
-    expect(consoleLogSpy.mock.calls[1][0]).toBe("sum changed 0");
-    expect(consoleLogSpy.mock.calls[2][0]).toBe("rendering app without signal");
-    expect(consoleLogSpy.mock.calls[3][0]).toBe("sum changed 1");
-    expect(consoleLogSpy.mock.calls[4][0]).toBe("rendering app without signal");
-    expect(consoleLogSpy.mock.calls[5][0]).toBe("sum changed 2");
-    expect(consoleLogSpy.mock.calls.length).toBe(6);
-    consoleLogSpy.mockRestore();
-  });
-});
-
-describe("AppWithSignal", () => {
-  it("increments count when button is clicked", async () => {
-    const consoleLogSpy = vi.spyOn(console, "log");
-    consoleLogSpy.mockImplementation(() => {});
-    const user = userEvent.setup();
-    render(<AppWithSignal />);
-
-    await assertWorkingApp({ user });
-
-    expect(consoleLogSpy.mock.calls[0][0]).toBe("rendering app with signal");
-    expect(consoleLogSpy.mock.calls[1][0]).toBe("creating app model");
-    expect(consoleLogSpy.mock.calls[2][0]).toBe("sum changed 0");
-    expect(consoleLogSpy.mock.calls[3][0]).toBe("sum changed 1");
-    expect(consoleLogSpy.mock.calls[4][0]).toBe("sum changed 2");
-    expect(consoleLogSpy.mock.calls.length).toBe(5);
+    expect(consoleLogSpy.mock.calls[1][0]).toBe("rendering first number");
+    expect(consoleLogSpy.mock.calls[2][0]).toBe("rendering second number");
+    expect(consoleLogSpy.mock.calls[3][0]).toBe("rendering sum");
+    expect(consoleLogSpy.mock.calls[4][0]).toBe("current sum: 0");
+    expect(consoleLogSpy.mock.calls[5][0]).toBe("rendering app without signal");
+    expect(consoleLogSpy.mock.calls[6][0]).toBe("rendering first number");
+    expect(consoleLogSpy.mock.calls[7][0]).toBe("rendering second number");
+    expect(consoleLogSpy.mock.calls[8][0]).toBe("rendering sum");
+    expect(consoleLogSpy.mock.calls[9][0]).toBe("current sum: 1");
+    expect(consoleLogSpy.mock.calls[10][0]).toBe(
+      "rendering app without signal",
+    );
+    expect(consoleLogSpy.mock.calls[11][0]).toBe("rendering first number");
+    expect(consoleLogSpy.mock.calls[12][0]).toBe("rendering second number");
+    expect(consoleLogSpy.mock.calls[13][0]).toBe("rendering sum");
+    expect(consoleLogSpy.mock.calls[14][0]).toBe("current sum: 2");
+    expect(consoleLogSpy.mock.calls.length).toBe(15);
     consoleLogSpy.mockRestore();
   });
 });
@@ -75,12 +67,39 @@ describe("AppWithSignalUnoptimized", () => {
 
     expect(consoleLogSpy.mock.calls[0][0]).toBe("rendering app with signal");
     expect(consoleLogSpy.mock.calls[1][0]).toBe("creating app model");
-    expect(consoleLogSpy.mock.calls[2][0]).toBe("sum changed 0");
-    expect(consoleLogSpy.mock.calls[3][0]).toBe("sum changed 1");
-    expect(consoleLogSpy.mock.calls[4][0]).toBe("rendering app with signal");
-    expect(consoleLogSpy.mock.calls[5][0]).toBe("sum changed 2");
-    expect(consoleLogSpy.mock.calls[6][0]).toBe("rendering app with signal");
-    expect(consoleLogSpy.mock.calls.length).toBe(7);
+    expect(consoleLogSpy.mock.calls[2][0]).toBe("current sum: 0");
+    expect(consoleLogSpy.mock.calls[3][0]).toBe("rendering first number");
+    expect(consoleLogSpy.mock.calls[4][0]).toBe("rendering second number");
+    expect(consoleLogSpy.mock.calls[5][0]).toBe("rendering sum");
+    expect(consoleLogSpy.mock.calls[6][0]).toBe("current sum: 1");
+    expect(consoleLogSpy.mock.calls[7][0]).toBe("rendering first number");
+    expect(consoleLogSpy.mock.calls[8][0]).toBe("rendering sum");
+    expect(consoleLogSpy.mock.calls[9][0]).toBe("current sum: 2");
+    expect(consoleLogSpy.mock.calls[10][0]).toBe("rendering second number");
+    expect(consoleLogSpy.mock.calls[11][0]).toBe("rendering sum");
+    expect(consoleLogSpy.mock.calls.length).toBe(12);
+    consoleLogSpy.mockRestore();
+  });
+});
+
+describe("AppWithSignal", () => {
+  it("increments count when button is clicked", async () => {
+    const consoleLogSpy = vi.spyOn(console, "log");
+    consoleLogSpy.mockImplementation(() => {});
+    const user = userEvent.setup();
+    render(<AppWithSignal />);
+
+    await assertWorkingApp({ user });
+
+    expect(consoleLogSpy.mock.calls[0][0]).toBe("rendering app with signal");
+    expect(consoleLogSpy.mock.calls[1][0]).toBe("creating app model");
+    expect(consoleLogSpy.mock.calls[2][0]).toBe("current sum: 0");
+    expect(consoleLogSpy.mock.calls[3][0]).toBe("rendering first number");
+    expect(consoleLogSpy.mock.calls[4][0]).toBe("rendering second number");
+    expect(consoleLogSpy.mock.calls[5][0]).toBe("rendering sum");
+    expect(consoleLogSpy.mock.calls[6][0]).toBe("current sum: 1");
+    expect(consoleLogSpy.mock.calls[7][0]).toBe("current sum: 2");
+    expect(consoleLogSpy.mock.calls.length).toBe(8);
     consoleLogSpy.mockRestore();
   });
 });
@@ -110,9 +129,9 @@ describe("AppModel", () => {
     expect(sum.value).toBe(2);
 
     expect(consoleLogSpy.mock.calls[0][0]).toBe("creating app model");
-    expect(consoleLogSpy.mock.calls[1][0]).toBe("sum changed 0");
-    expect(consoleLogSpy.mock.calls[2][0]).toBe("sum changed 1");
-    expect(consoleLogSpy.mock.calls[3][0]).toBe("sum changed 2");
+    expect(consoleLogSpy.mock.calls[1][0]).toBe("current sum: 0");
+    expect(consoleLogSpy.mock.calls[2][0]).toBe("current sum: 1");
+    expect(consoleLogSpy.mock.calls[3][0]).toBe("current sum: 2");
     expect(consoleLogSpy.mock.calls.length).toBe(4);
     consoleLogSpy.mockRestore();
   });
