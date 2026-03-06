@@ -21,8 +21,8 @@ Promise.all([
   const container = document.getElementById("signals-devtools");
   if (container) {
     const adapter = createDirectAdapter();
-    mount({ adapter, container }).then(() => {
-      createRoot(document.getElementById("root")!).render(<App />);
-    });
+    // mount({ adapter, container }).then(() => {
+    createRoot(document.getElementById("root")!).render(<App />);
+    // });
   }
 });
